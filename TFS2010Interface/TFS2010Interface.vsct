@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!--  This is the file that defines the actual layout and type of the commands.
+        It is divided in different sections (e.g. command definition, command
+        placement, ...), with each defining a specific set of properties.
+        See the comment before each section for more details about how to
+        use it. -->
+
+  <!--  The VSCT compiler (the tool that translates this file into the binary 
+        format that VisualStudio will consume) has the ability to run a preprocessor 
+        on the vsct file; this preprocessor is (usually) the C++ preprocessor, so 
+        it is possible to define includes and macros with the same syntax used 
+        in C++ files. Using this ability of the compiler here, we include some files 
+        defining some of the constants that we will use inside the file. -->
+
+  <!--This is the file that defines the IDs for all the commands exposed by VisualStudio. -->
+  <Extern href="stdidcmd.h"/>
+
+  <!--This header contains the command ids for the menus provided by the shell. -->
+  <Extern href="vsshlids.h"/>
+
+  <Commands package="guidTFS2010InterfacePkg">
+
+    <Menus>
+      
+      <Menu guid="guidTFS2010InterfaceCmdSet" id="TFS2010InterfaceToolbar" type="ToolWindowToolbar">
+        <CommandFlag>DefaultDocked</CommandFlag>
+        <Strings>
+          <ButtonText>Test Toolbar</ButtonText>
+          <CommandName>Test Toolbar Command</CommandName>
+        </Strings>
+      </Menu>
+      
+    </Menus>
+    
+    <Groups>
+
+      <Group guid="guidTFS2010InterfaceCmdSet" id="TFS2010InterfaceToolbarGroup" priority="0x0000">
+        <Parent guid="guidTFS2010InterfaceCmdSet" id="TFS2010InterfaceToolbar" />
+      </Group>
+      
+    </Groups>
+    
+    <Buttons>
+
+      <!-- View Menu button to load the tool window -->
+      <Button guid="guidTFS2010InterfaceCmdSet" id="cmdidViewMenuLoadToolWindowButton" priority="0x0100" type="Button">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_WNDO_OTRWNDWS1"/>
+        <Icon guid="guidTeam" id="pngTeam" />
+        <Strings>
+          <ButtonText>TFS File Explorer</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidTFS2010InterfaceCmdSet" id="cmdidRefreshFiles" priority="0x0100" type="Button">
+        <Parent guid="guidTFS2010InterfaceCmdSet" id="TFS2010InterfaceToolbarGroup" />
+        <Icon guid="guidRefresh" id="pngRefresh" />
+        <CommandFlag>IconAndText</CommandFlag>
+        <Strings>
+          <ButtonText>Refresh</ButtonText>
+          <ToolTipText>Refresh All Files</ToolTipText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidTFS2010InterfaceCmdSet" id="cmdidSolutionSearchButton" priority="0x0100" type="Button">
+        <Parent guid="guidTFS2010InterfaceCmdSet" id="TFS2010InterfaceToolbarGroup" />
+        <Icon guid="guidSolution" id="pngSolution" />
+        <CommandFlag>IconAndText</CommandFlag>
+        <Strings>
+          <ButtonText>Solution</ButtonText>
+          <ToolTipText>Search Solution Files</ToolTipText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidTFS2010InterfaceCmdSet" id="cmdidCheckedOutSearchButton" priority="0x0100" type="Button">
+        <Parent guid="guidTFS2010InterfaceCmdSet" id="TFS2010InterfaceToolbarGroup" />
+        <Icon guid="guidCheck" id="pngCheck" />
+        <CommandFlag>IconAndText</CommandFlag>
+        <Strings>
+          <ButtonText>Pending Changes</ButtonText>
+          <ToolTipText>Search Read/Write and Checked Out Files</ToolTipText>
+        </Strings>
+      </Button>
+
+    </Buttons>
+   
+    <Bitmaps>
+
+      <Bitmap guid="guidImages" href="Resources\Images.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows"/>
+      <Bitmap guid="guidRefresh" href="Resources\refresh.png"/>
+      <Bitmap guid="guidCheck" href="Resources\checkbox.png"/>
+      <Bitmap guid="guidSolution" href="Resources\solution.png"/>
+      <Bitmap guid="guidTeam" href="Resources\team.png"/>
+      
+    </Bitmaps>
+ 
+  </Commands>
+
+  <Symbols>
+    <!-- This is the package guid. -->
+    <GuidSymbol name="guidTFS2010InterfacePkg" value="{247cd7fe-e882-4bbd-ad48-a7be121a7c2d}" />
+    
+    <!-- This is the guid used to group the menu commands together -->
+    <GuidSymbol name="guidTFS2010InterfaceCmdSet" value="{d37b77b0-5522-45d3-a0d0-dd4ed1ff5ee2}">
+
+      <!-- Tool window button to show the tool window -->
+      <IDSymbol name="cmdidViewMenuLoadToolWindowButton" value="0x0100" />
+
+      <IDSymbol name="cmdidRefreshFiles" value="0x0101" />
+      <IDSymbol name="cmdidSolutionSearchButton" value="0x0102" />
+      <IDSymbol name="cmdidCheckedOutSearchButton" value="0x0103" />
+
+      <!-- Toolbar and group for the toolbar inside the tool window -->
+      <IDSymbol name="TFS2010InterfaceToolbar" value="0x1000" />
+      <IDSymbol name="TFS2010InterfaceToolbarGroup" value="0x1050" />
+      
+    </GuidSymbol>
+    
+    <GuidSymbol name="guidImages" value="{138a788a-77e6-4c1a-bdf5-147107fba939}" >
+      <IDSymbol name="bmpPic1" value="1" />
+      <IDSymbol name="bmpPic2" value="2" />
+      <IDSymbol name="bmpPicSearch" value="3" />
+      <IDSymbol name="bmpPicX" value="4" />
+      <IDSymbol name="bmpPicArrows" value="5" />
+      <IDSymbol name="bmpPicStrikethrough" value="6" />
+    </GuidSymbol>
+
+    <GuidSymbol name="guidRefresh" value="{9f555245-2430-4e6f-992b-b49ce87a31a2}">
+      <IDSymbol name ="pngRefresh" value="1" />
+    </GuidSymbol>
+
+    <GuidSymbol name="guidCheck" value="{9f555245-2430-4e6f-992b-b49ce87a31a3}">
+      <IDSymbol name ="pngCheck" value="1" />
+    </GuidSymbol>
+
+    <GuidSymbol name="guidSolution" value="{9f555245-2430-4e6f-992b-b49ce87a31a4}">
+      <IDSymbol name ="pngSolution" value="1" />
+    </GuidSymbol>
+
+    <GuidSymbol name="guidTeam" value="{9f555245-2430-4e6f-992b-b49ce87a31a5}">
+      <IDSymbol name ="pngTeam" value="1" />
+    </GuidSymbol>
+  </Symbols>
+
+</CommandTable>
