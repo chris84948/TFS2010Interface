@@ -145,6 +145,7 @@ namespace chrisbjohnson.TFS2010Interface
             singleton.TFSServer = options.TFSServer;
             singleton.TFSWorkspace = options.TFSWorkspace;
             singleton.TFSPath = options.TFSPath;
+            singleton.FileFilter = options.FileFilter;
         }
     }
 }
