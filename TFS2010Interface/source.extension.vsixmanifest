@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="247cd7fe-e882-4bbd-ad48-a7be121a7c2d" Version="1.0" Language="en-US" Publisher="chrisbjohnson" />
+    <Identity Id="247cd7fe-e882-4bbd-ad48-a7be121a7c2d" Version="1.1" Language="en-US" Publisher="chrisbjohnson" />
     <DisplayName>TFS File Explorer</DisplayName>
     <Description xml:space="preserve">Allows access to TFS 2008 instance from Visual Studio 2013</Description>
     <License>MIT License.txt</License>

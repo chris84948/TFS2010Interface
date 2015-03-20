@@ -168,7 +168,7 @@ namespace chrisbjohnson.TFS2010Interface
 
             if (FileLoadingWorker.IsBusy)
                 return;
-            
+
             // Read all files and update filters
             FileLoadingWorker.RunWorkerAsync();
         }
@@ -183,8 +183,16 @@ namespace chrisbjohnson.TFS2010Interface
 
             List<string> localFiles = tfsController.GetLocalItems(currentPath);
 
+            string filter = Singleton.GetObject().FileFilter;
+            bool doFilter= !string.IsNullOrEmpty(filter);
+
             foreach (string file in localFiles)
             {
+                if (doFilter && Regex.IsMatch(file, filter))
+                {
+                    continue;
+                }
+
                 Files.Add(new TFSItemViewModel(file));
             }
 
@@ -235,8 +243,8 @@ namespace chrisbjohnson.TFS2010Interface
             string solutionDir = Common.GetSolutionDirectory();
 
             // Get all files that are checked out for the appropriate path based on the filter selected
-            List<string> checkedoutFiles = tfsController.GetFilesWithPendingChanges(SearchSolution && !string.IsNullOrEmpty(solutionDir) ? 
-                                                                                    solutionDir : 
+            List<string> checkedoutFiles = tfsController.GetFilesWithPendingChanges(SearchSolution && !string.IsNullOrEmpty(solutionDir) ?
+                                                                                    solutionDir :
                                                                                     tfsController.Workspace.Folders[0].LocalItem + Singleton.GetObject().TFSPath);
 
             // First get the read/write files
@@ -267,7 +275,7 @@ namespace chrisbjohnson.TFS2010Interface
             if (searchFilter == "")
                 SearchedFiles = new ObservableCollection<TFSItemViewModel>(FilteredFiles.OrderBy(p => p.Filename));
             else
-                SearchedFiles = new ObservableCollection<TFSItemViewModel>(FilteredFiles.Where(p => Regex.Match(p.Filepath, searchFilter,RegexOptions.IgnoreCase).Success).OrderBy(p => p.Filename));
+                SearchedFiles = new ObservableCollection<TFSItemViewModel>(FilteredFiles.Where(p => Regex.Match(p.Filepath, searchFilter, RegexOptions.IgnoreCase).Success).OrderBy(p => p.Filename));
 
             SyncCheckedoutItems();
         }

@@ -38,5 +38,11 @@ namespace chrisbjohnson.TFS2010Interface
             get { return _tfsPath; }
             set { _tfsPath = value; }
         }
+
+        [Category("General")]
+        [DisplayName("File Filter")]
+        [Description(@"Regex used to filter files. File paths matching this filter will be ignored. e.g. ""\\bin"" ignores bin folder.")]
+        public string FileFilter { get; set; }
+
     }
 }

@@ -14,6 +14,7 @@ namespace chrisbjohnson.TFS2010Interface
         private string _tfsServer;
         private string _tfsWorkspace;
         private string _tfsPath;
+        private string _fileFilter;
 
         private Singleton()
         {
@@ -73,6 +74,24 @@ namespace chrisbjohnson.TFS2010Interface
                 if (value != _tfsPath)
                 {
                     _tfsPath = value;
+                    EventHandler handler = OptionsUpdatedEvent;
+                    if (handler != null)
+                    {
+                        handler(this, EventArgs.Empty);
+                    }
+                }
+            }
+
+        }
+
+        public string FileFilter
+        {
+            get { return _fileFilter; }
+            set
+            {
+                if (value != _fileFilter)
+                {
+                    _fileFilter = value;
                     EventHandler handler = OptionsUpdatedEvent;
                     if (handler != null)
                     {
